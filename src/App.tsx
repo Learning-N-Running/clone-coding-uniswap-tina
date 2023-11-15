@@ -2,7 +2,7 @@ import "./App.css";
 import { createWeb3Modal } from "@web3modal/wagmi/react";
 import { walletConnectProvider } from "@web3modal/wagmi";
 
-import { WagmiConfig, configureChains, createConfig } from "wagmi";
+import { WagmiConfig, configureChains, createConfig, useAccount } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { polygon } from "wagmi/chains";
 import { InjectedConnector } from "wagmi/connectors/injected";
@@ -25,8 +25,8 @@ const { chains, publicClient } = configureChains(
 );
 
 const metadata = {
-  name: "Web3Modal",
-  description: "Web3Modal Example",
+  name: "Tina's Regsitry",
+  description: "Tina's Dex",
   url: "https://web3modal.com",
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };
@@ -36,7 +36,7 @@ const wagmiConfig = createConfig({
   connectors: [
     new WalletConnectConnector({
       chains,
-      options: { projectId, showQrModal: false, metadata },
+      options: { projectId, showQrModal: false, metadata }, //// showQrModal: true하면 Wallet Connect버튼을 눌렀을 때, Wallet Connect 자체 QR 모달도 함께 나옴.(계속 나온다;;)
     }),
     new InjectedConnector({ chains, options: { shimDisconnect: true } }),
   ],

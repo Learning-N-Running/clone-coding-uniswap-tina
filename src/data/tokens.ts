@@ -1,6 +1,17 @@
 import { TokenData } from "../interfaces/data/token-data.interface";
 
-export const TokenDataList:{[chainId: number]:TokenData[]} = {
+export type TokenType = {
+  address: string;
+  chainId: number;
+  symbol: string;
+  decimals: number;
+  name: string;
+  priceUSD: string;
+  logoURI: string;
+  coinKey: string;
+};
+
+export const TokenDataList: { [chainId: number]: TokenData[] } = {
   1: [
     {
       address: "0x0000000000000000000000000000000000000000",
