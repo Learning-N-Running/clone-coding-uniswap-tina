@@ -28,8 +28,7 @@ export default function Portfolio() {
   const { address: user } = useAccount();
   const { data: balance } = useBalance({ address: user, chainId: 137 });
   const { chain: currentChain } = useNetwork();
-  const { switchNetwork } =
-    useSwitchNetwork();
+  const { switchNetwork } = useSwitchNetwork();
   const [tokenList, setTokenList] = useState<TokenData[]>([]);
   const [tokenBalance, setTokenBalance] = useState<string[]>([]);
   const getBalancesList = async () => {
@@ -43,7 +42,10 @@ export default function Portfolio() {
     }
   };
   useEffect(() => {
-    switchNetwork?.(137);
+    switchNetwork?.(137); //switchNetwork 함수의 용법 //chainId가 137인 곳으로 이동.
+    // 이 구문에서 사용된 ?. 연산자는 옵셔널 체이닝(Optional Chaining) 연산자입니다. 이 연산자는 switchNetwork가 null 또는 undefined가 아닐 때만 switchNetwork 함수를 호출하도록 합니다. 만약 switchNetwork가 null 또는 undefined이면, 함수 호출 없이 undefined를 반환합니다.
+    // 이는 switchNetwork 함수의 존재 여부를 확인할 때 유용하며, 오류를 방지하기 위한 안전한 방법입니다.
+    // 예를 들어, switchNetwork가 정의되어 있으면 switchNetwork(137)를 호출하고, 그렇지 않으면 아무 것도 하지 않습니다.
     getBalancesList();
   }, [currentChain, user]);
 
